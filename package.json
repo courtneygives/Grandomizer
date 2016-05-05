@@ -1,0 +1,38 @@
+{
+  "name": "grandomizer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "body-parser": "^1.15.0",
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.4",
+    "nodemon": "^1.9.1",
+    "passport": "^0.3.2",
+    "pg": "^4.5.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "mocha": "^2.4.5",
+    "grunt": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/courtneygives/Grandomizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/courtneygives/Grandomizer/issues"
+  },
+  "homepage": "https://github.com/courtneygives/Grandomizer#readme",
+  "description": ""
+}
