@@ -22,9 +22,9 @@
   },
   "scripts": {
     "test": "mocha",
-    "start": "node server/server.js"
+    "start": "nodemon server/server.js"
   },
-  "author": "",
+  "author": "Courtney Ives",
   "license": "ISC",
   "repository": {
     "type": "git",
@@ -34,5 +34,13 @@
     "url": "https://github.com/courtneygives/Grandomizer/issues"
   },
   "homepage": "https://github.com/courtneygives/Grandomizer#readme",
-  "description": ""
+  "description": "Read the full [Scope](https://goo.gl/S81WXp). Or don't.",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "instructors",
+    "groups",
+    "classroom"
+  ]
 }

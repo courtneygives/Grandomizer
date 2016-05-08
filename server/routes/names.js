@@ -1,7 +1,3 @@
-var app = angular.modules('Namerator', []);
-
-
-
 
  exports.namerator = {
 
@@ -25,5 +21,5 @@ var app = angular.modules('Namerator', []);
   }
 };
 
-getPlural();
-getSingular();
+exports.namerator.getPlural();
+exports.namerator.getSingular();

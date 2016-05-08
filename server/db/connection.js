@@ -18,9 +18,24 @@ function initializeDB(){
       process.exit(1);
     } else {
       var query = client.query(
-      'CREATE TABLE IF NOT EXISTS i/(  
-      );'
-      );
+      'CREATE TABLE IF NOT EXISTS users('+
+      'id SERIAL PRIMARY KEY,' +
+      'username varchar(255),' +
+      'owned_cohorts varchar(255));');
+
+      query.on('end', function(){
+        console.log('Users table exists');
+        done();
+      });
+
+      query.on('error', function(err){
+        console.log('Error creating Users table: ' + err);
+        process.exit(1);
+      });
+
     }
   });
 }
+
+module.exports.connectionString = connectionString;
+module.exports.initializeDB = initializeDB;

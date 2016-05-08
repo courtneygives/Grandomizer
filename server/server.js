@@ -18,14 +18,6 @@ app.use(bodyParser.json());
 
 // :::::::: routes :::::::: //
 app.use('/', index);
-app.use('/names');
-
-
-
-
-
-
-
 
 
 
