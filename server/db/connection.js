@@ -18,10 +18,10 @@ function initializeDB(){
       process.exit(1);
     } else {
       var query = client.query(
-      'CREATE TABLE IF NOT EXISTS users('+
+      'CREATE TABLE IF NOT EXISTS account('+
       'id SERIAL PRIMARY KEY,' +
-      'username varchar(255),' +
-      'owned_cohorts varchar(255));');
+      'username varchar(255) NOT NULL,' +
+      'password varchar(100) NOT NULL);');
 
       query.on('end', function(){
         console.log('Users table exists');
