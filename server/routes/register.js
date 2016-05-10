@@ -18,7 +18,7 @@ router.post('/', function(request, response, next){
 
   pg.connect(connectionString, function(err, client){
 
-    var query = client.query('INSERT INTO account (username, password) VALUES ($1, $2)', [request.body.username, request.body.password]);
+    var query = client.query('INSERT INTO accounts (username, password) VALUES ($1, $2)', [request.body.username, request.body.password]);
 
     query.on('error', function(err){
         console.log('Error registering user: ', err);

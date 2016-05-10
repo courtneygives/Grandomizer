@@ -42,7 +42,7 @@ passport.use('local', new localStrategy({
       console.log('called local - pg');
       var user = {};
 
-      var query = client.query("SELECT * FROM account WHERE username = $1", [username]);
+      var query = client.query("SELECT * FROM accounts WHERE username = $1", [username]);
 
       query.on('row', function(row){
         console.log('User object: ', row);
@@ -80,7 +80,7 @@ passport.deserializeUser(function(id, done){
 
     var user = {};
     console.log('Called deserializeUser - pg');
-    var query = client.query("SELECT * FROM account WHERE id = $1", [id]);
+    var query = client.query("SELECT * FROM accounts WHERE id = $1", [id]);
 
     query.on('row', function(row) {
       console.log('User row', row);
