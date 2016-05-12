@@ -8,7 +8,7 @@ var passport = require('passport');
 var session = require('express-session');
 var localStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
-
+var path = require('path');
 var app = express();
 var port = process.env.PORT || 3000;
 
@@ -16,11 +16,14 @@ var port = process.env.PORT || 3000;
 var index = require('./routes/index.js');
 var register = require('./routes/register.js');
 
-
 // :::::::: configuration :::::::: //
 app.use(express.static('server/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+
+app.use('/*', function(request, response){
+  response.sendFile(path.join(__dirname, 'public/views/index.html'));
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
