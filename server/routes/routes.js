@@ -31,4 +31,13 @@ router.get('/cohorts', function(request, response){
   });
 });
 
+// ::::::::: EDIT COHORT ::::::::: //
+
+
+// ::::::::: DELETE COHORT ::::::::: //
+
+
 // ::::::::: GET PARTICIPANTS ::::::::: //
+
+
+// ::::::::: DELETE PARTICIPANT ::::::::: //

@@ -2,10 +2,12 @@
 <html ng-app="GrandomizerApp">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Grandomizer</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="views/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="views/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="views/favicon-16x16.png">
   <link rel="manifest" href="/manifest.json">
   <script src="vendor/angular/angular.min.js"></script>
   <script src="vendor/angular/angular-route.min.js"></script>
@@ -16,27 +18,28 @@
 </head>
 
 <!-- :::::::::: BODY :::::::::: -->
-
 <body ng-controller="IndexController as vm">
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <ul>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/login">Register/Login</a></li>
-        <li><a href="/">Grandomizer</a></li>
-      </ul>
+  <div class="container-fluid">
+    <div class="page-header">
+      <h1>Grandomizer</h1>
+      <h3>{{vm.header}}</h3>
     </div>
-  </nav>
-  <div>
-    <ng-view></ng-view>
+
+      <ul class="nav nav-tabs nav-justified">
+        <li role="warning"><a href="/">Grandomizer</a></li>
+        <li role="warning"><a href="/profile">Profile</a></li>
+        <li role="warning"><a href="/login">Log in/Register</a></li>
+      </ul>
+
+    <!-- :::::::::: PARTIAL WINDOW :::::::::: -->
+    <div class = "partial">
+      <ng-view></ng-view>
+    </div>
+
+    <!-- :::::::::: FOOTER :::::::::: -->
+
+
+
   </div>
-</body>
-
-<!-- :::::::::: FOOTER :::::::::: -->
-
-<footer>
-
-
-</footer>
-
+</body> <!-- :::::::::: END INDEX CONTROLLER :::::::::: -->
 </html>

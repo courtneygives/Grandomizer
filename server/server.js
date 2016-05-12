@@ -21,9 +21,7 @@ app.use(express.static('server/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.use('/*', function(request, response){
-  response.sendFile(path.join(__dirname, 'public/views/index.html'));
-});
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -121,6 +119,9 @@ initializeDB();
 // :::::::: routes :::::::: //
 app.use('/', index);
 app.use('/register', register);
+app.use('/*', function(request, response){
+  response.sendFile(path.join(__dirname, 'public/views/index.html'));
+});
 
 
 // :::::::: server :::::::: //

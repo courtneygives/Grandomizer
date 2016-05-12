@@ -13,6 +13,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'LoginController',
     controllerAs: 'login'
   })
+
   .when('/profile', {
     templateUrl: 'views/partials/profile.html',
     controller: 'ProfileController',
@@ -22,30 +23,51 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 }]);
 
 // ::::::::: INDEX CONTROLLER ::::::::: //
-app.controller('IndexController', ['$route', '$routeParams', '$location',
-function($route, $routeParams, $location) {
-  this.$route = $route;
-  this.$location = $location;
-  this.$routeParams = $routeParams;
-}]);
+app.controller('IndexController', function(){
+  var index = this;
+  index.header = 'Bringing people together, then separating them since 2016.';
+});
 
 // ::::::::: HOME CONTROLLER ::::::::: //
 app.controller('HomeController', function(){
   var home = this;
-  home.message= 'This is the home page.';
+  home.header= 'Generate groups';
 });
 
 // ::::::::: LOGIN CONTROLLER ::::::::: //
-app.controller('LoginController', function(){
+app.controller('LoginController', ['$http', function($http){
   var login = this;
-  login.message = 'This is the login and registration page.';
-});
+  login.new = {};
+  login.existing = {};
 
 
-// ::::::::: LOGIN CONTROLLER ::::::::: //
+  login.signIn = function(){
+
+  };
+
+  login.signOut = function(){
+
+  };
+
+  login.newUser = function(){
+    $http.post('register/new', {
+      username: login.new.username,
+      password: login.new.password
+    })
+    .then(function(response){
+      console.log(response);
+      console.log('Added user: ' + login.new.username);
+    });
+  };
+
+}]); // ::::::::: END LOGIN ::::::::: //
+
+
+
+// ::::::::: PROFILE CONTROLLER ::::::::: //
 app.controller('ProfileController', function(){
   var profile = this;
-  profile.message = 'This is the user profile page.';
+  profile.header = 'Create, edit, and update cohorts';
 });
 
 // ::::::::: FACTORIES ::::::::: //
