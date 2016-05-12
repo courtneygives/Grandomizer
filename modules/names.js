@@ -1,3 +1,5 @@
+// TO DO: http://www.sitepoint.com/understanding-module-exports-exports-node-js/
+
 
  exports.namerator = {
 
@@ -23,3 +25,5 @@
 
 exports.namerator.getPlural();
 exports.namerator.getSingular();
+
+console.log(namerator.getPlural());

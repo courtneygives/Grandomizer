@@ -11,16 +11,33 @@
   <script src="vendor/angular/angular-route.min.js"></script>
   <script src="assets/scripts/client.min.js"></script>
   <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css"/>
+  <link rel="stylesheet" href="stylesheets/index.css"/>
   <base href="/">
 </head>
-<body>
+
+
+<!-- :::::::::: BODY :::::::::: -->
+
+<body ng-controller="IndexController as vm">
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
+      <ul>
+        <li><a href="/profile">Profile</li>
+          <li><a href="/login">Register/Login</li>
+            <li><a href="/">Grandomizer</li>
+            </ul>
+          </div>
+        </nav>
+        <div>
+          <ng-view></ng-view>
+        </div>
+      </body>
 
-    </div>
-  </nav>
-  <ng-view>
+      <!-- :::::::::: FOOTER :::::::::: -->
 
-  </ng-view>
-</body>
-</html>
+      <footer>
+
+
+      </footer>
+
+      </html>
