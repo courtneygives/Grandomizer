@@ -116,16 +116,11 @@ passport.deserializeUser(function(id, done){
 //   }
 // ));
 
-
-
 initializeDB();
-
 
 // :::::::: routes :::::::: //
 app.use('/', index);
 app.use('/register', register);
-
-
 
 
 // :::::::: server :::::::: //

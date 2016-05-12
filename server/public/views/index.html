@@ -15,29 +15,28 @@
   <base href="/">
 </head>
 
-
 <!-- :::::::::: BODY :::::::::: -->
 
 <body ng-controller="IndexController as vm">
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
       <ul>
-        <li><a href="/profile">Profile</li>
-          <li><a href="/login">Register/Login</li>
-            <li><a href="/">Grandomizer</li>
-            </ul>
-          </div>
-        </nav>
-        <div>
-          <ng-view></ng-view>
-        </div>
-      </body>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/login">Register/Login</a></li>
+        <li><a href="/">Grandomizer</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div>
+    <ng-view></ng-view>
+  </div>
+</body>
 
-      <!-- :::::::::: FOOTER :::::::::: -->
+<!-- :::::::::: FOOTER :::::::::: -->
 
-      <footer>
+<footer>
 
 
-      </footer>
+</footer>
 
-      </html>
+</html>

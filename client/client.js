@@ -1,6 +1,5 @@
 var app = angular.module('GrandomizerApp', ['ngRoute']);
 
-
 // ::::::::: CLIENT ROUTES ::::::::: //
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
   $routeProvider
@@ -24,18 +23,17 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 // ::::::::: INDEX CONTROLLER ::::::::: //
 app.controller('IndexController', ['$route', '$routeParams', '$location',
-  function($route, $routeParams, $location) {
-    this.$route = $route;
-    this.$location = $location;
-    this.$routeParams = $routeParams;
-  }]);
+function($route, $routeParams, $location) {
+  this.$route = $route;
+  this.$location = $location;
+  this.$routeParams = $routeParams;
+}]);
 
 // ::::::::: HOME CONTROLLER ::::::::: //
 app.controller('HomeController', function(){
   var home = this;
   home.message= 'This is the home page.';
 });
-
 
 // ::::::::: LOGIN CONTROLLER ::::::::: //
 app.controller('LoginController', function(){
