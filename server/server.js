@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var initializeDB = require('./db/connection.js').initializeDB;
 var pg = require('pg');
-
+var bcrypt = require('bcrypt');
 var connectionString = require('./db/connection.js').connectionString;
 var passport = require('passport');
 var session = require('express-session');
@@ -53,6 +53,7 @@ passport.use('local', new localStrategy({
           console.log('Password match');
           done(null, user);
         } else {
+          console.log('Wrong Password!');
           done(null, false, {message: 'Incorrect username or password.'});
         }
       });
@@ -101,18 +102,6 @@ passport.deserializeUser(function(id, done){
   });
 });
 
-//http://passportjs.org/docs/google  <-- TO DO: finish google oauth
-// passport.use(new GoogleStrategy({
-//     consumerKey: GOOGLE_CONSUMER_KEY,
-//     consumerSecret: GOOGLE_CONSUMER_SECRET,
-//     callbackURL: "http://www.example.com/auth/google/callback"
-//   },
-//   function(token, tokenSecret, profile, done) {
-//       User.findOrCreate({ googleId: profile.id }, function (err, user) {
-//         return done(err, user);
-//       });
-//   }
-// ));
 
 initializeDB();
 
@@ -122,7 +111,6 @@ app.use('/register', register);
 app.use('/*', function(request, response){
   response.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
-
 
 // :::::::: server :::::::: //
 app.listen(port, function() {

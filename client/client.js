@@ -32,6 +32,9 @@ app.controller('IndexController', function(){
 app.controller('HomeController', function(){
   var home = this;
   home.header= 'Generate groups';
+  home.groupList = [];
+  home.group = [];
+  
 });
 
 // ::::::::: LOGIN CONTROLLER ::::::::: //
@@ -39,10 +42,18 @@ app.controller('LoginController', ['$http', function($http){
   var login = this;
   login.new = {};
   login.existing = {};
-
+  login.attempt = {};
 
   login.signIn = function(){
-
+    $http.post('register/login', {
+      username: login.existing.username,
+      password: login.existing.password
+    }).then(function(response, err){
+      console.log('Logged in as: ', login.existing.username);
+      if (err){
+        console.log('Could not log in');
+      }
+    });
   };
 
   login.signOut = function(){
@@ -55,7 +66,7 @@ app.controller('LoginController', ['$http', function($http){
       password: login.new.password
     })
     .then(function(response){
-      console.log(response);
+
       console.log('Added user: ' + login.new.username);
     });
   };
