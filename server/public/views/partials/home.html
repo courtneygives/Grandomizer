@@ -1,8 +1,46 @@
 <!DOCTYPE html>
-<div class="container-fluid">
 
-  <div ng-controller="HomeController as vm">
-    <h1>Home</h1>
-    <p>{{vm.header}}</p>
+<!-- :::::::::: CONTROLLER :::::::::: -->
+<div ng-controller="HomeController as vm">
+  <div class="container-fluid">
+
+    <div class="row"> <!-- :::: ROW 1 :::: -->
+      <h1>Home</h1>
+      <p>{{vm.header}}</p>
+    </div> <!-- :::: END ROW 1 :::: -->
+
+    <div class="row"> <!-- :::: ROW 2 :::: -->
+        <div class="col-sm-6">
+          <h3>Cohorts</h3>
+          <div class="list-group">
+  <a href="#" class="list-group-item active">
+    Cras justo odio
+  </a>
+  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+  <a href="#" class="list-group-item">Morbi leo risus</a>
+  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+  <a href="#" class="list-group-item">Vestibulum at eros</a>
+</div>
+        </div>
+        <div class="col-sm-6">
+          <h3>Group Criteria</h3>
+          <!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+        </div>
+    </div> <!-- :::: END ROW 2 :::: -->
+
   </div>
+
+<!-- :::::::::: END CONTROLLER :::::::::: -->
 </div>

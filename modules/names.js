@@ -1,9 +1,10 @@
 // TO DO: http://www.sitepoint.com/understanding-module-exports-exports-node-js/
 
+// The keyword 'require' returns an object, which references the value of module.exports for a given file. If a developer unintentionally or intentionally re-assigns module.exports to a different object or different data structure, then any properties added to the original module.exports object will be unaccessible.
 
- exports.namerator = {
+ var namerator = {
 
-  adjectives: ['Funky', 'Raging', 'Surly', 'Purple', 'Laminated', 'Jolly', 'Peachy', 'Gelatinous', 'Possibly Illegal', 'Hydrophobic', 'Powdery', 'Theoretical', 'Dreamy', 'Ballroom', 'Brand-Name', 'Bespectacled', 'Paleolithic', 'Jurrasic', 'Metaphorical', 'Space', 'Alpha', 'Beta', 'Online Only', 'Rogue', 'Minimalist', 'Pseudo', 'SuperZen', 'Future Proof', 'Definitely Trustworthy', 'Overpaid', 'Craft', 'Micro', 'Macro', 'Righteous', 'Iced', 'Legacy', 'Designer', 'Super Fast', 'Rambunctious', 'Cringey', 'Chrome', 'Mandibular', 'Legit', 'Likeable', 'Newsworthy', 'Solid-State', 'Soft-Spoken', 'Functional', 'SciFi', 'New-And-Improved', 'Unix-Based', 'Puppy', 'Object-Oriented', 'Extra-Strength', 'Banana', 'Truthy', 'Robot', 'Tangential', 'Cutesy', 'Shakespearian', 'Apache', 'Prairie', 'Caffeinated', 'Helicopter', 'Pixelated', 'Stereo', 'Envoked', '7.1 Surround', 'Organic', 'Compact', 'Concatenated', 'Jazz', 'High-End', 'Ultra-Light', 'Parenthetical', 'Night-Mode', 'Paper Machet', 'Turing-Complete', 'Aerospace', 'Modular', 'Fancy', 'Gluten-Free', 'Fashionable', 'Galactic', 'Indie', 'Instant', 'Incumbent', 'Slick', 'Mechanical', 'Default', 'Angular', 'Official', 'Mac-Compatible', 'Kitty', 'Fictional', 'Hyper', 'Hyperbolic', 'Fairytale'],
+  adjectives: ['Funky', 'Raging', 'Surly', 'Purple', 'Laminated', 'Jolly', 'Peachy', 'Gelatinous', 'Possibly Illegal', 'Hydrophobic', 'Powdery', 'Theoretical', 'Dreamy', 'Ballroom', 'Brand-Name', 'Bespectacled', 'Paleolithic', 'Jurrasic', 'Metaphorical', 'Space', 'Alpha', 'Beta', 'Online Only', 'Rogue', 'Minimalist', 'Pseudo', 'Zen', 'Future', 'Definitely Trustworthy', 'Overpaid', 'Craft', 'Micro', 'Macro', 'Righteous', 'Ice', 'Legacy', 'Designer', 'Super Fast', 'Rambunctious', 'Cringey', 'Chrome', 'Mandibular', 'Legit', 'Likeable', 'Newsworthy', 'Solid-State', 'Soft-Spoken', 'Functional', 'SciFi', 'New-And-Improved', 'Unix-Based', 'Puppy', 'Object-Oriented', 'Extra-Strength', 'Banana', 'Truthy', 'Robot', 'Tangential', 'Cutesy', 'Shakespearian', 'Apache', 'Prairie', 'Caffeinated', 'Helicopter', 'Pixelated', 'Stereo', 'Envoked', '7.1 Surround', 'Organic', 'Compact', 'Concatenated', 'Jazz', 'High-End', 'Ultra-Light', 'Parenthetical', 'Night-Mode', 'Paper Machet', 'Turing-Complete', 'Aerospace', 'Modular', 'Fancy', 'Gluten-Free', 'Fashionable', 'Galactic', 'Indie', 'Instant', 'Incumbent', 'Slick', 'Mechanical', 'Default', 'Angular', 'Official', 'Mac-Compatible', 'Kitty', 'Fictional', 'Hyper', 'Hyperbolic', 'Fairytale'],
 
   singNouns: ['Component', 'Database', 'Establishment', 'ProcessingPower', 'Enthusiast', 'Array', 'Developer', 'Techie', 'Runtime', 'Wonder', 'Iterator', 'Explorer', 'Directory', 'Commit', 'Firefly', 'DataStructure', 'Mogul', 'Abstraction', 'Executable', 'Pixel', 'Node', 'Emoticon', 'Department', 'Robot', 'Enigma', 'Authority', 'Englightenment', 'Magic', 'ListItem', 'Unit', 'Debugger', 'SuperUser', 'URL', 'Jargon', 'Giant', 'Function', '"String"', 'Superstar',  'Cohort', 'SingerSongwriter', 'Prototype', 'Variable', 'Atom', 'Mastermind', 'Repository', 'Processor', 'Electron', 'PizzaLover', 'TwitterUser', 'SoAndSo', 'Magician', 'Contrarian', 'Curmudgeon', 'Singularity', 'Module', 'Acronym', 'Cult', 'Committee', 'Data', 'Contingent', 'ZooKeeper', 'Minimalist', 'SuperFan', 'Syntax', 'Technology', 'CPU',  'GameChanger', 'Visionary', 'Pragmatist', 'SearchResult', 'Tangent', 'Particle', 'Substance', 'Element', 'BananaSandwich', 'BreakfastClub', 'Regime', 'Pterodactyl', 'Ponies', 'Narwhal', 'Tauntaun', 'Entity', 'Cubes', 'Foodie', 'Hipster', 'Integer', 'Empire', 'Alliance', 'Party', 'Cylinder', 'Thespian', 'Method', 'Grammarian', 'Stack', 'FederationOfPlanets', 'Hero', 'Technician', 'SeismicEvent', 'Object', 'GrassyKnoll', 'HotDish', 'Galaxy', 'Organsim', 'LifeForm', 'HodgePodge', 'Ninja', 'Ewok', 'TimeTraveler', 'Astronaut'],
 
@@ -23,7 +24,10 @@
   }
 };
 
-exports.namerator.getPlural();
-exports.namerator.getSingular();
 
-console.log(namerator.getPlural());
+module.exports = namerator;
+// daisy-chain to the next document using this:
+// var namerator = require('../names.js ');
+// namerator.getPlural();
+// require the final document in server.js
+// client uses this chain of functions via a route.

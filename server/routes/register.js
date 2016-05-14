@@ -7,10 +7,6 @@ var flash = require('connect-flash');
 
 var connectionString = require('../db/connection.js').connectionString;
 
-// ::::::::: GET HTML ::::::::: //
-router.get('/', function(request, response, next){
-  response.sendFile(path.join(__dirname, '../public/views/login.html'));
-});
 
 
 // ::::::::: REGISTRATION ::::::::: //
@@ -30,18 +26,42 @@ router.post('/new', function(request, response, next){
 });
 
 // ::::::::: LOG IN ::::::::: //
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/home',
-  failureRedirect: '/login',
-}), function(request, response){
-  response.redirect('/users/' + request.user.username);
+router.post('/login', passport.authenticate('local'),
+function(request, response){
+  response.sendStatus(200);
 }
 );
+
+// ::::::::: GET USER ::::::::: //
+router.get('/user', function(request, response, next) {
+  console.log('requested session info for', request.session);
+  var userId = request.session.passport.user;
+  pg.connect(connectionString, function(err, client, done){
+    if(err){
+      console.log('Error connecting to DB!', err);
+      process.exit(1);
+    } else {
+      var user = {};
+      var query = client.query('SELECT * FROM accounts WHERE id = $1;', [userId]);
+
+      query.on('row', function(row) {
+        user = row;
+      });
+      query.on('end', function() {
+        // client.end();
+        console.log(user);
+        response.send({username: user.username, display_name: user.display_name, id: user.id, permissions: user.permissions, isLogged: passport.authenticate()});
+        done();
+      });
+    }
+  });
+});
+
 
 // ::::::::: LOG OUT ::::::::: //
 router.get('/logout', function(request, response){
   request.logout();
-  response.redirect('/login');
+  response.sendStatus(200);
 });
 
 // ::::::::: EDIT USER NAME ::::::::: //

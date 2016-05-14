@@ -7,21 +7,19 @@ var connectionString = require('./db/connection.js').connectionString;
 var passport = require('passport');
 var session = require('express-session');
 var localStrategy = require('passport-local').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
-var path = require('path');
+ var path = require('path');
 var app = express();
 var port = process.env.PORT || 3000;
 
 // :::::::: import modules :::::::: //
 var index = require('./routes/index.js');
 var register = require('./routes/register.js');
+var groups = require('../modules/groups.js');
 
 // :::::::: configuration :::::::: //
 app.use(express.static('server/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-
-
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -65,7 +63,7 @@ passport.use('local', new localStrategy({
 
       // Error handling
       if (err) {
-        console.log('Error with Passport: ', err);
+        console.log('Error with DB connection: ', err);
       }
     });
 
@@ -73,6 +71,7 @@ passport.use('local', new localStrategy({
 ));
 
 passport.serializeUser(function(user, done){
+  console.log('call serializeUser');
   done(null, user.id);
 });
 
@@ -109,6 +108,7 @@ initializeDB();
 app.use('/', index);
 app.use('/register', register);
 app.use('/*', function(request, response){
+  console.log('catch all!');
   response.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 

@@ -34,30 +34,41 @@ app.controller('HomeController', function(){
   home.header= 'Generate groups';
   home.groupList = [];
   home.group = [];
-  
+
 });
 
 // ::::::::: LOGIN CONTROLLER ::::::::: //
-app.controller('LoginController', ['$http', function($http){
+app.controller('LoginController', ['$location', '$http', function($location, $http){
   var login = this;
   login.new = {};
   login.existing = {};
   login.attempt = {};
 
   login.signIn = function(){
-    $http.post('register/login', {
+    console.log('sign in called');
+    $http.post('/register/login', {
       username: login.existing.username,
       password: login.existing.password
     }).then(function(response, err){
-      console.log('Logged in as: ', login.existing.username);
-      if (err){
-        console.log('Could not log in');
+      if (response.status == 200) {
+        $location.path('/profile');
       }
+      console.log('Logged in as: ', login.existing.username);
+    }, function(response){
+        console.log('Could not log in');
+    });
+    $http.get('/register/user').then(function(response, err){
+
     });
   };
 
   login.signOut = function(){
+    console.log('logging out');
+    $http.post('/register/logout', {
 
+    }).then(function(response, err){
+
+    });
   };
 
   login.newUser = function(){
@@ -66,7 +77,6 @@ app.controller('LoginController', ['$http', function($http){
       password: login.new.password
     })
     .then(function(response){
-
       console.log('Added user: ' + login.new.username);
     });
   };
