@@ -14,21 +14,22 @@ var port = process.env.PORT || 3000;
 // :::::::: import modules :::::::: //
 var index = require('./routes/index.js');
 var register = require('./routes/register.js');
-var groups = require('../modules/groups.js');
+var groupmaker = require('../modules/groupmaker.js');
+var routes = require('./routes/routes.js');
 
 // :::::::: configuration :::::::: //
 app.use(express.static('server/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(session({
   secret: 'secret',
   resave: true,
   saveUninitialized: false,
   cookie: { maxAge: 60000, secure: false }
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // :::::::: Passport Strategies :::::::: //
 passport.use('local', new localStrategy({
@@ -47,17 +48,17 @@ passport.use('local', new localStrategy({
         console.log('User object: ', row);
         console.log('Password: ', password);
         user = row;
-        if (password == user.password){
-          console.log('Password match');
-          done(null, user);
-        } else {
-          console.log('Wrong Password!');
-          done(null, false, {message: 'Incorrect username or password.'});
-        }
       });
 
       // When data is returned, close the connection and return results //
       query.on('end', function(){
+      if (password == user.password){
+        console.log('Password match');
+        done(null, user);
+      } else {
+        console.log('Wrong Password!');
+        done(null, false, {message: 'Incorrect username or password.'});
+      }
         client.end();
       });
 
@@ -77,7 +78,7 @@ passport.serializeUser(function(user, done){
 
 passport.deserializeUser(function(id, done){
   console.log('Called deserializeUser');
-  pg.connect(connection, function (err, client){
+  pg.connect(connectionString, function (err, client){
 
     var user = {};
     console.log('Called deserializeUser - pg');
@@ -107,6 +108,7 @@ initializeDB();
 // :::::::: routes :::::::: //
 app.use('/', index);
 app.use('/register', register);
+app.use('/routes', routes);
 app.use('/*', function(request, response){
   console.log('catch all!');
   response.sendFile(path.join(__dirname, 'public/views/index.html'));

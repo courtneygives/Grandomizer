@@ -22,20 +22,55 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   $locationProvider.html5Mode(true);
 }]);
 
+// app.factory('currentUser', ['$http', function($http) {
+//     var user = {};
+//     var getUser = function() {
+//         $http.get('/register/user').then(function(response) {
+//         console.log(response);
+//         user.info = response.data;
+//         console.log('Current user: ', user.info);
+//       });
+//     };
+//       return {user: user, getUser: getUser};
+// }]);
+
 // ::::::::: INDEX CONTROLLER ::::::::: //
 app.controller('IndexController', function(){
   var index = this;
   index.header = 'Bringing people together, then separating them since 2016.';
 });
 
-// ::::::::: HOME CONTROLLER ::::::::: //
-app.controller('HomeController', function(){
+// ::::::::: PROFILE CONTROLLER ::::::::: //
+app.controller('ProfileController', ['$http',  function($http){
   var home = this;
-  home.header= 'Generate groups';
-  home.groupList = [];
-  home.group = [];
+  home.cohortName = '';
+  home.participants = '';
+  home.cohortList = [];
 
-});
+  home.savePants = function(){
+    home.pantsList = home.participants.split(",");
+    console.log(home.pantsList);
+    $http.post('/routes/add-cohort',
+    {
+      name: home.cohortName,
+      participants: home.pantsList
+    }
+    ).then(function(response, err){
+      if (response.status !== 201){
+        console.log('There was an error saving the entry: ', err, response.status);
+      } else {
+        console.log('Saved cohort');
+        home.cohortList.push(home.cohortName);
+        console.log(home.cohortList);
+      }
+    });
+  };
+
+  home.saveName = function(){
+
+  };
+
+}]);
 
 // ::::::::: LOGIN CONTROLLER ::::::::: //
 app.controller('LoginController', ['$location', '$http', function($location, $http){
@@ -55,19 +90,16 @@ app.controller('LoginController', ['$location', '$http', function($location, $ht
       }
       console.log('Logged in as: ', login.existing.username);
     }, function(response){
-        console.log('Could not log in');
-    });
-    $http.get('/register/user').then(function(response, err){
-
+      console.log('Could not log in');
     });
   };
 
-  login.signOut = function(){
+  login.signOut = function(userID){
     console.log('logging out');
     $http.post('/register/logout', {
 
     }).then(function(response, err){
-
+      console.log('Could not log' + user.info);
     });
   };
 
@@ -86,9 +118,7 @@ app.controller('LoginController', ['$location', '$http', function($location, $ht
 
 
 // ::::::::: PROFILE CONTROLLER ::::::::: //
-app.controller('ProfileController', function(){
+app.controller('HomeController', function(){
   var profile = this;
   profile.header = 'Create, edit, and update cohorts';
 });
-
-// ::::::::: FACTORIES ::::::::: //

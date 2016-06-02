@@ -3,9 +3,34 @@
 <!-- :::::::::: CONTROLLER :::::::::: -->
 <div ng-controller="ProfileController as vm">
   <div class="container-fluid">
-    <h1>User Profile</h1>
-    <p>{{vm.header}}</p>
-    
+
+    <div class="row"> <!-- :::: ROW 1 :::: -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">User Profile</h3>
+        </div>
+        <div class="panel-body">
+          {{vm.header}}
+        </div>
+      </div>
+
+    </div> <!-- :::: END ROW 1 :::: -->
+
+    <div class="well well-lg row"> <!-- :::: ROW 2 :::: -->
+      <div class="col-sm-6">
+        <h3>Saved Cohorts</h3>
+        <ul>
+          <li ng-repeat="cohort in vm.cohortList">
+            {{vm.cohort}}</li>
+        </ul>
+      </div>
+      <div class=" criteria col-sm-6">
+        <h3>Edit Cohort</h3>
+        <input type="text" ng-model="vm.cohortName">
+        <textarea placeholder="ex: John Paul George Ringo" ng-model="vm.participants" rows="4" cols="50"></textarea>
+        <button ng-click="vm.savePants()" type="submit" name="button">Save</button>
+      </div>
+    </div> <!-- :::: END ROW 2 :::: -->
 
 
   </div>

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var session = require('express-session');
 var path = require('path');
 var pg = require('pg');
 var flash = require('connect-flash');
@@ -26,11 +27,9 @@ router.post('/new', function(request, response, next){
 });
 
 // ::::::::: LOG IN ::::::::: //
-router.post('/login', passport.authenticate('local'),
-function(request, response){
+router.post('/login', passport.authenticate('local'), function(request, response){
   response.sendStatus(200);
-}
-);
+});
 
 // ::::::::: GET USER ::::::::: //
 router.get('/user', function(request, response, next) {
@@ -50,7 +49,7 @@ router.get('/user', function(request, response, next) {
       query.on('end', function() {
         // client.end();
         console.log(user);
-        response.send({username: user.username, display_name: user.display_name, id: user.id, permissions: user.permissions, isLogged: passport.authenticate()});
+        response.send({username: user.username, display_name: user.display_name, id: user.id, isLogged: passport.authenticate()});
         done();
       });
     }

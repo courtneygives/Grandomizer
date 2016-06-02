@@ -25,10 +25,22 @@
       <h3>{{vm.header}}</h3>
     </div>
 
-    <ul class="nav nav-tabs nav-justified">
-      <li role="warning"><a href="/">Grandomizer</a></li>
-      <li role="warning"><a href="/profile">Profile</a></li>
-      <li role="warning"><a href="/login">Log in/Register</a></li>
+    <ul class="nav nav-tabs">
+      <li role="presentation"><a href="/">Grandomizer</a></li>
+      <li role="presentation"><a href="/profile">Profile</a></li>
+      <li role="presentation"><a href="/login">Log in/Register</a></li>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Action <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </div>
     </ul>
 
     <!-- :::::::::: PARTIAL WINDOW :::::::::: -->
