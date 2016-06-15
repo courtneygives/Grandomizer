@@ -1,52 +1,63 @@
 {
-  "name": "grandomizer",
+  "name": "calm-unit",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "My app description",
+  "scripts": {
+    "build": "gulp build",
+    "build:production": "gulp build --production",
+    "deploy": "npm test && git push heroku master",
+    "postinstall": "npm run build:production",
+    "start": "node server.js",
+    "test": "npm run test:server && npm run test:client",
+    "test:client": "karma start app/karma.conf.js --single-run",
+    "test:server": "mocha --recursive",
+    "watch": "gulp"
+  },
   "dependencies": {
-    "angular": "^1.5.5",
-    "angular-route": "^1.5.5",
-    "bcrypt": "^0.8.6",
-    "body-parser": "^1.15.0",
-    "bootstrap": "^3.3.6",
-    "connect-flash": "^0.1.1",
+    "async": "^1.5.2",
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.15.1",
+    "bookshelf": "^0.9.2",
+    "compression": "^1.6.2",
     "cookie-parser": "^1.4.1",
+    "dotenv": "^2.0.0",
     "express": "^4.13.4",
-    "express-session": "^1.13.0",
-    "nodemon": "^1.9.1",
-    "passport": "^0.3.2",
-    "passport-google-oauth": "^1.0.0",
-    "passport-local": "^1.0.0",
-    "pg": "^4.5.3"
+    "express-validator": "^2.20.4",
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "latest",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "latest",
+    "gulp-csso": "^1.1.0",
+    "gulp-if": "^2.0.0",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "jsonwebtoken": "^5.7.0",
+    "knex": "^0.10.0",
+    "moment": "^2.12.0",
+    "morgan": "^1.7.0",
+    "nodemailer": "^2.3.0",
+    "pg": "^4.5.1",
+    "request": "^2.69.0",
+    "vinyl-buffer": "^1.0.0",
+    "yargs": "^4.3.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "grunt-contrib-watch": "^1.0.0",
+    "karma": "^0.13.22",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "^0.5.5",
+    "karma-mocha": "^1.0.1",
+    "karma-phantomjs-launcher": "^1.0.0",
     "mocha": "^2.4.5",
-    "grunt": "^1.0.1",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-uglify": "^1.0.1"
+    "phantomjs-prebuilt": "^2.1.7",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
+    "supertest": "^1.2.0"
   },
-  "scripts": {
-    "test": "mocha",
-    "start": "nodemon server/server.js"
-  },
-  "author": "Courtney Ives",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/courtneygives/Grandomizer.git"
-  },
-  "bugs": {
-    "url": "https://github.com/courtneygives/Grandomizer/issues"
-  },
-  "homepage": "https://github.com/courtneygives/Grandomizer#readme",
-  "description": "Read the full [Scope](https://goo.gl/S81WXp). Or don't.",
-  "directories": {
-    "test": "test"
-  },
-  "keywords": [
-    "instructors",
-    "groups",
-    "classroom"
-  ]
+  "engines": {
+    "node": "6.1.0"
+  }
 }
