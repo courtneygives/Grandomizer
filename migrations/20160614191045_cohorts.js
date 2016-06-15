@@ -1,10 +1,9 @@
-
 exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('cohorts', function(table) {
       table.increments();
       table.string('name');
-      table.string('user_id');
+      table.integer('user_id').unsigned().references('users.id');
       table.timestamps();
     })
   ]);
